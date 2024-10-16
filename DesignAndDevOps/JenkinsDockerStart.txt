@@ -1,0 +1,3 @@
+docker run -d --name jenkins -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts-jdk11
+Docker ps -a
+docker exec 6539d2141d1f  cat /var/jenkins_home/secrets/initialAdminPassword
