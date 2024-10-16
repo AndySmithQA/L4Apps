@@ -1,0 +1,70 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+
+public class PaymentSystem
+{
+    public bool Pay(int ID, double money)
+    {
+        return true;
+    }
+}
+
+public class Skill
+{
+    public int ID { get; set; }
+    public string Name { get; set; }
+    public Skill(int id, string skillName)
+    {
+        this.ID = id;
+        this.Name = skillName;
+    }
+}
+
+public class Employee
+{
+    public int ID { get; set; }
+    public double Salary { get; set; }
+    public int Age { get; set; }
+    public bool IsManager { get; set; }
+    public List<Skill> Skills { get; set; }
+
+    public Employee(int id, double salary, int age, bool isManager, List<Skill> skills)
+    {
+        this.ID = id;
+        this.Salary = salary; // ...
+    }
+}
+
+public class HR
+{
+    public bool makePayment(Employee emp, double money)
+    {
+        PaymentSystem paymentSystem = new PaymentSystem();
+        return paymentSystem.Pay(emp.ID, money);
+    }
+}
+
+//------------------------------------------------------------------------------
+namespace Tests
+{
+    [TestClass()]
+    public class CalculatorTests
+    {
+        HR hr;
+
+        [TestInitialize]
+        public void setup()
+        {
+            hr = new HR();
+        }
+
+        [TestMethod()]
+        public void testPaymentForValidEmployeeAndAmount()
+        {
+            Employee emp = new Employee(123,2000.50,30, false, null );
+            Assert.IsTrue (hr.makePayment(emp, 1000));       
+        }
+
+    }
+}
